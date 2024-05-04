@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import '@/css/global.scss'
 import type { AppProps } from "next/app";
 import React from "react";
-import { basementLog, isClient, isDev, isProd } from "@/lib/constants";
+import { montekLog, isClient, isDev, isProd } from "@/lib/constants";
 import { useAppStore } from "@/context/use-app-store";
 
 export type GetLayoutFn<P = Record<string, unknown>> = (
@@ -11,7 +11,7 @@ export type GetLayoutFn<P = Record<string, unknown>> = (
 
 if (isProd && isClient || isDev) {
   // eslint-disable-next-line no-console
-  console.log(basementLog)
+  console.log(montekLog)
 }
 
 

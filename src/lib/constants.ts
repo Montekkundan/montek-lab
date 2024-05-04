@@ -14,7 +14,7 @@ export const siteURL = new URL(process.env.NEXT_PUBLIC_SITE_URL)
 export const siteOrigin = siteURL.origin
 export const githubUrl = 'https://github.com/montekkundan/montek-lab'
 
-export const basementLog = `
+export const montekLog = `
 
 
    ███╗   ███╗
