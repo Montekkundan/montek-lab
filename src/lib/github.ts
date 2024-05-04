@@ -39,16 +39,12 @@ export const getFileContributors = async (file: string) => {
 
   const data = await client.request(query)
 
-  console.log('data', data)
-
   const uniqueContributors = uniqBy(
     data.repository.object.history.nodes,
     (n: any) => {
       return n.author.user.id
     }
   ).map((n: any) => n.author.user)
-
-  console.log('uniqueContributors', uniqueContributors)
 
   return uniqueContributors
 }

@@ -1,5 +1,16 @@
 [
   {
+    "filename": "2.cube.js",
+    "title": "Three.js Cube.",
+    "href": "/experiments/2.cube.js",
+    "tags": [
+      "r3f"
+    ],
+    "og": "http://localhost:3000/ogs/2.cube.png",
+    "number": 2,
+    "contributors": []
+  },
+  {
     "filename": "1.html.js",
     "title": "HTML page.",
     "href": "/experiments/1.html.js",

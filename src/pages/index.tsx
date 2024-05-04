@@ -24,21 +24,21 @@ export const getStaticProps: GetStaticProps = async () => {
   const experimentsDir = path.resolve(process.cwd(), 'src/experiments');
   const allSlugs = await getAllExperimentSlugs()
   function extractTagsFromFile(fileContents: string): string[] {
-    const tagMatch = fileContents.match(/JustATest\.Tags\s*=\s*\[([^\]]+)\]/);
-    if (tagMatch && tagMatch[1]) {
-      return tagMatch[1].split(',').map(tag => tag.trim().replace(/['"]/g, '').toLowerCase());
+    const tagRegex = /([A-Za-z_$][A-Za-z0-9_$]*)\.Tags\s*=\s*\[\s*([^\]]+?)\s*\]/s;
+    const tagMatch = fileContents.match(tagRegex);
+    if (tagMatch && tagMatch[2]) {
+      return tagMatch[2].split(',')
+        .map(tag => tag.trim().replace(/['"]/g, '').toLowerCase());
     }
     return [];
   }
   
-  
   function extractTitleFromFile(fileContents: string): string {
-    const titleMatch = fileContents.match(/JustATest\.Title\s*=\s*['"]([^'"]+)['"]/);
-    return titleMatch ? titleMatch[1].trim() : '';
+    const titleRegex = /([A-Za-z_$][A-Za-z0-9_$]*)\.Title\s*=\s*['"]([^'"]+)['"]/s;
+    const titleMatch = fileContents.match(titleRegex);
+    return titleMatch ? titleMatch[2].trim() : '';
   }
   
-  
-
   const modules = await Promise.all(
     allSlugs.map(async (slug) => {
       const fullPath = path.join(experimentsDir, slug);
@@ -116,7 +116,6 @@ export const getStaticProps: GetStaticProps = async () => {
     process.cwd() + '/public/experiments.json',
     JSON.stringify(experiments, null, 2)
   )
-  console.log('experiments', experiments)
   return {
     props: {
       experiments: experiments

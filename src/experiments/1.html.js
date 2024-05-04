@@ -1,6 +1,6 @@
 import { HTMLLayout } from '../components/layout/html-layout'
 
-const JustATest = () => {
+const Test = () => {
   return (
     <div
       style={{
@@ -16,9 +16,9 @@ const JustATest = () => {
   )
 }
 
-JustATest.Layout = HTMLLayout
+Test.Layout = HTMLLayout
 
-JustATest.Title = 'HTML page'
-JustATest.Tags = ['html', 'example']
+Test.Title = 'HTML page'
+Test.Tags = ['html', 'example']
 
-export default JustATest
+export default Test
