@@ -8,8 +8,8 @@ const client = new GraphQLClient('https://api.github.com/graphql', {
 })
 
 const ORG = 'montekkundan'
-const REPO = 'lab-montek'
-const BRANCH = 'main'
+const REPO = 'montek-lab'
+const BRANCH = 'master'
 
 export const getFileContributors = async (file: string) => {
   const query = gql`
@@ -37,24 +37,18 @@ export const getFileContributors = async (file: string) => {
     }
   `
 
-  // const data = await client.request(query)
+  const data = await client.request(query)
 
-  // const uniqueContributors = uniqBy(
-  //   data.repository.object.history.nodes,
-  //   (n: any) => {
-  //     return n.author.user.id
-  //   }
-  // ).map((n: any) => n.author.user)
+  console.log('data', data)
 
-  // return uniqueContributors
-  return [
-    {
-      id: 'montekkundan', 
-      url: 'https://github.com/montekkundan', 
-      name: 'Montek',
-      avatarUrl: '',
-      email: 'montek@example.com',
-      company: 'Example Company' 
+  const uniqueContributors = uniqBy(
+    data.repository.object.history.nodes,
+    (n: any) => {
+      return n.author.user.id
     }
-  ];
+  ).map((n: any) => n.author.user)
+
+  console.log('uniqueContributors', uniqueContributors)
+
+  return uniqueContributors
 }
