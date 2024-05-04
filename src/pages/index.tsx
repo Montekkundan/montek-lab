@@ -1,118 +1,127 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { isDev, siteOrigin } from '@/lib/constants'
+import { Meta } from "@/components/common/meta";
+import { PageLayout } from "@/components/layout/page";
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Welcome from "@/components/common/welcome";
+import { getFileContributors } from '@/lib/github'
+import { getAllExperimentSlugs, getExamplePath } from '@/lib/utils'
 
-export default function Home() {
+const HomePage = ({
+  experiments
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    <PageLayout>
+      <Meta />
+      <Welcome experiments={experiments} />
+    </PageLayout>
+  )
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const fs = await import('fs')
+  const path = await import('path');
+  const experimentsDir = path.resolve(process.cwd(), 'src/experiments');
+  const allSlugs = await getAllExperimentSlugs()
+  function extractTagsFromFile(fileContents: string): string[] {
+    const tagMatch = fileContents.match(/JustATest\.Tags\s*=\s*\[([^\]]+)\]/);
+    if (tagMatch && tagMatch[1]) {
+      return tagMatch[1].split(',').map(tag => tag.trim().replace(/['"]/g, '').toLowerCase());
+    }
+    return [];
+  }
+  
+  
+  function extractTitleFromFile(fileContents: string): string {
+    const titleMatch = fileContents.match(/JustATest\.Title\s*=\s*['"]([^'"]+)['"]/);
+    return titleMatch ? titleMatch[1].trim() : '';
+  }
+  
+  
+
+  const modules = await Promise.all(
+    allSlugs.map(async (slug) => {
+      const fullPath = path.join(experimentsDir, slug);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const tags = extractTagsFromFile(fileContents);
+      const title = extractTitleFromFile(fileContents);
+      return { slug, title, tags };
+    })
+  );
+
+  let experiments = modules
+    .map((exp) => {
+      console.log('exp', exp);
+      return {
+        filename: exp.slug,
+        title: exp.title || exp.slug,
+        href: `/experiments/${exp.slug}`,
+        tags: exp.tags.map(tag => tag.toLowerCase().trim())
+      };
+    })
+    .sort((a, b) => b.filename.localeCompare(a.filename, undefined, { numeric: true }));
+
+
+  // Add og images
+  const ogFiles = fs.readdirSync(process.cwd() + '/public/ogs')
+
+  experiments = experiments.map((e) => {
+    // Remove extension
+    const filename = e.filename.split(/.(jsx|js|ts|tsx)/)[0]
+    const matchingOgFile = ogFiles.find((f) => f.startsWith(filename))
+    const og = matchingOgFile ? `${siteOrigin}/ogs/${matchingOgFile}` : null
+
+    return {
+      ...e,
+      og
+    }
+  })
+
+  if (!isDev) {
+    // Filter privates
+    experiments = experiments.filter((e) => !e.tags.includes('private'))
+  }
+
+  const fileNameToTile = (filename: string) => {
+    let title = filename
+      .replace(/^\d+\./, '')
+      .replace(/\.[jt]sx?$/, '')
+      .replace(/-/g, ' ')
+
+    title = title.charAt(0).toUpperCase() + title.slice(1) + '.'
+
+    return title
+  }
+
+  // Numerate experiments
+  experiments = experiments.map((e, i) => ({
+    ...e,
+    title: fileNameToTile(e.title),
+    number: experiments.length - i
+  }))
+
+  // Add contributors
+  experiments = await Promise.all(
+    experiments.map(async (e) => {
+      const contributors = await getFileContributors(getExamplePath(e.filename))
+
+      return {
+        ...e,
+        contributors
+      }
+    })
+  )
+
+  fs.writeFileSync(
+    process.cwd() + '/public/experiments.json',
+    JSON.stringify(experiments, null, 2)
+  )
+  console.log('experiments', experiments)
+  return {
+    props: {
+      experiments: experiments
+    }
+  }
+}
+
+export default HomePage
