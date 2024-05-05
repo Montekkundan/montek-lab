@@ -43,7 +43,7 @@ export const getSizes = (
 }
 
 export const getExampleGithubUrl = (filename: string) =>
-  `${githubUrl}/blob/main/${getExamplePath(filename)}`
+  `${githubUrl}/tree/master/${getExamplePath(filename)}`
 
 export const getExamplePath = (filename: string) =>
   `src/experiments/${filename}`
