@@ -1,5 +1,17 @@
 [
   {
+    "filename": "3.shared-layout",
+    "title": "Shared layout.",
+    "href": "/experiments/3.shared-layout",
+    "tags": [
+      "html",
+      "example"
+    ],
+    "og": null,
+    "number": 3,
+    "contributors": []
+  },
+  {
     "filename": "2.cube.js",
     "title": "Three.js Cube.",
     "href": "/experiments/2.cube.js",

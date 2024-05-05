@@ -41,7 +41,15 @@ export const getStaticProps: GetStaticProps = async () => {
   
   const modules = await Promise.all(
     allSlugs.map(async (slug) => {
-      const fullPath = path.join(experimentsDir, slug);
+      let fullPath = path.join(experimentsDir, slug);
+      if (fs.lstatSync(fullPath).isDirectory()) {
+        // Check for index file with different extensions
+        const extensions = ['js', 'jsx', 'tsx'];
+        const defaultFile = extensions.map(ext => `index.${ext}`).find(file => fs.existsSync(path.join(fullPath, file)));
+        if (defaultFile) {
+          fullPath = path.join(fullPath, defaultFile);
+        }
+      }
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const tags = extractTagsFromFile(fileContents);
       const title = extractTitleFromFile(fileContents);
