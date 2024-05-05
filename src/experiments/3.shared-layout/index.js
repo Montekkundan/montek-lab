@@ -292,6 +292,6 @@ SharedLayout.Description = (
     default view and the shared layout view.
   </p>
 )
-SharedLayout.Tags = ['html', 'example'];
+SharedLayout.Tags = ['framer motion', 'animation'];
 
 export default SharedLayout;
