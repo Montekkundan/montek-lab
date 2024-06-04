@@ -1,0 +1,33 @@
+/* Styles for the parent HTML container to ensure full height and centering */
+.html_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* to ensure it covers the full viewport */
+  }
+  
+  /* Default styling for .dom_element */
+  .dom_element {
+    width: 100%; /* adjust width as needed */
+    height: 100%; /* adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center children vertically in the container */
+    align-items: center; /* Center children horizontally in the container */
+    gap: 1px; /* removed the quotes */
+  }
+  
+  /* Styling for paragraphs within .dom_element */
+  .dom_element > p {
+    font-size: 7rem; /* Default font size for larger screens */
+  }
+  
+  /* Media query for adjustments on screens narrower than 600px */
+  @media (max-width: 600px) {
+    .dom_element > p {
+      font-size: 3rem; /* Adjusted font size for mobile screens */
+    }
+  }
+  

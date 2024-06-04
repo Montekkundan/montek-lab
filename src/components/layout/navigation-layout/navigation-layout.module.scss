@@ -1,38 +1,51 @@
 .layout {
-    position: fixed;
-    z-index: 50;
-    padding: 20px;
-    max-width: 350px;
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    background-color: #0f0f0f50;
-    left: 10px;
-    top: 10px;
-    border: 1px solid #262626;
-  
-    .heading {
-      margin-top: 20px;
-  
-      .title {
-        font-size: 24px;
-      }
-  
-      .description {
-        margin-top: 10px;
-        font-size: 16px;
-      }
+  position: fixed;
+  z-index: 100;
+  padding: 20px;
+  max-width: 350px;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  background-color: #0f0f0f50;
+  left: 10px;
+  top: 10px;
+  border: 1px solid #262626;
+
+  .heading {
+    margin-top: 20px;
+
+    .title {
+      font-size: 24px;
+    }
+
+    .description {
+      margin-top: 10px;
+      font-size: 16px;
     }
   }
-  
-  .source {
-    position: fixed;
-    display: inline-block;
-    z-index: 50;
-    padding: 20px;
-    background-color: #0f0f0f50;
-    border: 1px solid #262626;
-    bottom: 10px;
-    left: 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-  }
+}
+
+.source {
+  position: fixed;
+  display: inline-block;
+  z-index: 50;
+  padding: 20px;
+  background-color: #0f0f0f50;
+  border: 1px solid #262626;
+  bottom: 10px;
+  left: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-button {
+  position: fixed;
+  z-index: 200;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: #000;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}

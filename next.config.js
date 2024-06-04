@@ -10,9 +10,15 @@ const config = {
   },
   reactStrictMode: false,
   swcMinify: false,
-  webpack: (config) => {
-    config.resolve.fallback = { ...config.resolve.fallback, fs: false }
-    return config
+  webpack: (config, options) => {
+    //  raw-loader for .glsl files
+    config.module.rules.push({
+      test: /\.glsl$/,
+      use: 'raw-loader',
+    });
+
+    config.resolve.fallback = { ...config.resolve.fallback, fs: false };
+    return config;
   },
   images: {
     domains: ['avatars.githubusercontent.com'],
