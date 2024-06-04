@@ -107,7 +107,7 @@ function Scene() {
 Scene.Layout = R3FCanvasLayout
 Scene.Title = 'Bulge text'
 Scene.Description =
-  'This is just a cube'
+  'Bulge text using react three fiber'
 Scene.Tags = ['r3f']
 
 export default Scene;
