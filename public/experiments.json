@@ -9,7 +9,16 @@
     ],
     "og": null,
     "number": 5,
-    "contributors": []
+    "contributors": [
+      {
+        "id": "MDQ6VXNlcjg3NzUwMTI4",
+        "url": "https://github.com/Montekkundan",
+        "name": "Montek",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/87750128?u=771e00a44b2e76a1f6262ea50c6c8b88eac0c563&v=4",
+        "email": "",
+        "company": null
+      }
+    ]
   },
   {
     "filename": "4.bulge-text",
