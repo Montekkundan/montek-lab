@@ -19,7 +19,7 @@ export const NavigationLayout: FC<NavigationLayoutProps> = ({
   description,
   slug
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed)

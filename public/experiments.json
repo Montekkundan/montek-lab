@@ -1,11 +1,22 @@
 [
   {
+    "filename": "6.shadcn-test",
+    "title": "Shadcn Test.",
+    "href": "/experiments/6.shadcn-test",
+    "tags": [
+      "ui",
+      "shadcn"
+    ],
+    "og": null,
+    "number": 6,
+    "contributors": []
+  },
+  {
     "filename": "5.junior-dev",
-    "title": "Junior.",
+    "title": "Junior Dev.",
     "href": "/experiments/5.junior-dev",
     "tags": [
-      "framer motion",
-      "animation"
+      "r3f"
     ],
     "og": null,
     "number": 5,

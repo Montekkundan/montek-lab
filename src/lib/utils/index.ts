@@ -1,4 +1,10 @@
 import { githubUrl, isClient } from '@/lib/constants'
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 
 export const formatError = (
   error: unknown

@@ -15,6 +15,7 @@ type Component<P = Record<string, unknown>> = FC<P> & {
   getLayout?: GetLayoutFn<P>
   Title?: string
   Description?: string
+  background?: 'white' | 'dots' | 'dots_white' | 'none'
 }
 
 type GetLayoutFn<P = Record<string, unknown>> = FC<{
@@ -22,6 +23,7 @@ type GetLayoutFn<P = Record<string, unknown>> = FC<{
   title?: string
   description?: string
   slug: string
+  background?: 'white' | 'dots' | 'dots_white' | 'none'
 }>
 
 const resolveLayout = (Comp: Module<Component>): GetLayoutFn => {
@@ -32,10 +34,10 @@ const resolveLayout = (Comp: Module<Component>): GetLayoutFn => {
   }
 
   if (Component?.Layout) {
-    const Layout = Component.Layout
+    const Layout = Component.Layout as FC<{ children: React.ReactNode, [key: string]: any }>
 
     return ({ Component, ...rest }) => (
-      <Layout {...rest}>
+      <Layout {...rest} background={Component.background}>
         <Component />
       </Layout>
     )
@@ -80,6 +82,7 @@ const Experiment = ({
         title={Component.default.Title}
         description={Component.default.Description}
         slug={slug}
+        background={Component.default.background}
       />
     </>
   )

@@ -17,6 +17,23 @@ if (isProd && isClient || isDev) {
 
 export default function App({ Component, pageProps,...rest }: AppProps) {
   React.useEffect(() => {
+    const componentBackground = (Component as any).background;
+    if (componentBackground === 'white' || componentBackground === 'dots_white') {
+      document.body.style.background = 'white';
+      document.body.style.color = 'black';
+    } else if (componentBackground === 'none') {
+      document.body.style.background = '';
+      document.body.style.color = '';
+    }
+
+    return () => {
+      // Clean up styles when component unmounts
+      document.body.style.background = '';
+      document.body.style.color = '';
+    };
+  }, [Component]);
+
+  React.useEffect(() => {
     if (!isDev) return
     let mousetrapRef: Mousetrap.MousetrapInstance | undefined = undefined
     import('mousetrap').then(({ default: mousetrap }) => {

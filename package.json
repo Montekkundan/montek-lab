@@ -12,8 +12,11 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.3",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-slot": "^1.1.2",
     "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.3",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.1.7",
     "fs": "^0.0.1-security",
@@ -29,6 +32,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.76.0",
+    "tailwind-merge": "^3.1.0",
+    "tailwindcss-animate": "^1.0.7",
     "three-custom-shader-material": "^5.4.0",
     "usehooks-ts": "^3.1.0",
     "zustand": "^4.5.2"
