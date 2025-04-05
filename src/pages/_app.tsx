@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import React from "react";
 import { montekLog, isClient, isDev, isProd } from "@/lib/constants";
 import { useAppStore } from "@/context/use-app-store";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export type GetLayoutFn<P = Record<string, unknown>> = (
   props: AppProps<P>
@@ -100,7 +101,14 @@ export default function App({ Component, pageProps,...rest }: AppProps) {
   
     return (
       <>
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
         {getLayout({ Component, pageProps, ...rest })}
+        </ThemeProvider>
       </>
     )
 }
